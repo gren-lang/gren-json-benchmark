@@ -1,0 +1,16 @@
+module Init exposing (main)
+
+import SampleData
+import Json.Encode as Json
+
+main : String
+main =
+    Json.encode 0 (Json.array userEncoder SampleData.users)
+
+userEncoder : SampleData.User -> Json.Value
+userEncoder user =
+    Json.object
+        [ { key = "id", value = Json.int user.id }
+        , { key = "name", value = Json.string user.name }
+        , { key = "email", value = Json.string user.email }
+        ]
